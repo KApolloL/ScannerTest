@@ -1,4 +1,3 @@
-import java.nio.BufferOverflowException;
 import java.util.Scanner;
 
 /**
@@ -47,14 +46,13 @@ public class ScannerInOut extends Object {
 
             }
             catch (Exception e) {
-                System.out.println(e.getMessage());
-                in.nextLine();
+                System.out.println("Invalid input.");
             }
         }
         while(true) {
             try {
                 System.out.print("Enter your gpa: ");
-                gpa = in.nextDouble();
+                gpa = Double.parseDouble(in.nextLine().trim().replaceAll("[^0-9.0-9]",""));
                 if(gpa < 0 || gpa > 4) {
                     System.out.println("Invalid gpa");
                 }
@@ -63,10 +61,11 @@ public class ScannerInOut extends Object {
                 }
             }
             catch (Exception e) {
-                System.out.println(e.getMessage());
-                in.next();
+                System.out.println("Invalid input.");
             }
         }
         System.out.println("Hello " + name + ", " + age + " years old, " + gpa + "GPA.");
+
+        in.close();
     }
 }
